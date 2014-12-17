@@ -2,23 +2,15 @@ os: unstable
 
 environment:
   global:
-    QTDIR: C:\Qt\Qt5.3.2\5.3\mingw482_32
+    QTDIR: C:\Qt\Qt5.3.2\5.3\msvc2013_opengl
     NSIS_ROOT: C:\nsis
 
-init:
-  - 'echo Building Tiled for Windows'
-  - 'echo System architecture: %PLATFORM%'
-  - 'echo Repo build branch is: %APPVEYOR_REPO_BRANCH%'
-  - 'echo Build folder is: %APPVEYOR_BUILD_FOLDER%'
-
 install:
-  - 'echo Retrieving NSIS'
   - 'appveyor DownloadFile "http://sunet.dl.sourceforge.net/project/nsis/NSIS 2/2.46/nsis-2.46-setup.exe" -FileName nsissetup.exe'
-  - 'echo Setting up NSIS'
   - 'nsissetup.exe /S /D=%NSIS_ROOT%'
-  - 'echo Done setting up NSIS'
-  - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
+  - call %QTDIR%\bin\qtenv2.bat
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86
 
 build_script:
   - qmake tiled.pro
-  - mingw32-make
+  - nmake
