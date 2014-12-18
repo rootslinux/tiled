@@ -5,7 +5,7 @@ environment:
   global:
     QTDIR: C:\Qt\Qt5.3.2\5.3\mingw482_32
     NSIS_ROOT: C:\nsis
-    MINGW: C:\MinGW
+    MINGW: C:\Qt\Tools\mingw482_32
 
 install:
   - appveyor DownloadFile "http://sunet.dl.sourceforge.net/project/nsis/NSIS 2/2.46/nsis-2.46-setup.exe" -FileName nsissetup.exe
