@@ -188,6 +188,7 @@ File ${QT_DIR}\bin\icuuc52.dll
 File ${QT_DIR}\bin\icudt52.dll
 File ${MINGW_DIR}\bin\libgcc_s_dw2-1.dll
 File ${MINGW_DIR}\bin\libstdc++-6.dll
+File ${MINGW_DIR}\bin\libwinpthread-1.dll
 File ${ROOT_DIR}\src\tiled\images\tiled-icon.ico
 File ${ROOT_DIR}\dist\win\qt.conf
 
@@ -267,6 +268,7 @@ Delete $INSTDIR\icuuc52.dll
 Delete $INSTDIR\icudt52.dll
 Delete $INSTDIR\libgcc_s_dw2-1.dll
 Delete $INSTDIR\libstdc++-6.dll
+Delete $INSTDIR\libwinpthread-1.dll
 Delete $INSTDIR\tiled-icon.ico
 Delete $INSTDIR\qt.conf
 Delete $INSTDIR\uninstall.exe
