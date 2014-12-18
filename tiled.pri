@@ -13,7 +13,6 @@ macx {
 # 64-bit systems, rather than being limited to just 2 GB.
 win32-g++* {
     QMAKE_LFLAGS += -Wl,--large-address-aware
-    QMAKE_LFLAGS += -static -static-libgcc -static-libstdc++
 } else:win32 {
     QMAKE_LFLAGS += /LARGEADDRESSAWARE
 }
