@@ -20,6 +20,8 @@ build_script:
   - echo Building Tiled daily %VERSION%... (from %COMMITNOW%)
   - qmake tiled.pro "CONFIG+=release" "QMAKE_CXXFLAGS+=-DBUILD_INFO_VERSION=%COMMITNOW%"
   - mingw32-make
+
+after_build:
   - pushd %APPVEYOR_BUILD_FOLDER%\dist\win
   - '%NSIS_ROOT%\makensis tiled.nsi'
 
