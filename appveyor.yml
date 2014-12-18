@@ -3,17 +3,17 @@ shallow_clone: true
 
 environment:
   global:
-    QTDIR: C:\Qt\Qt5.3.2\5.3\msvc2013_opengl
+    QTDIR: C:\Qt\Qt5.3.2\5.3\mingw482_32
     NSIS_ROOT: C:\nsis
 
 install:
-  - 'appveyor DownloadFile "http://sunet.dl.sourceforge.net/project/nsis/NSIS 2/2.46/nsis-2.46-setup.exe" -FileName nsissetup.exe'
-  - 'nsissetup.exe /S /D=%NSIS_ROOT%'
-  - set PATH=%PATH%;%QTDIR%\bin
-  - ls C:\Qt
-  - ls C:\Qt\Qt5.3.2\5.3
-  - call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86
+  - appveyor DownloadFile "http://sunet.dl.sourceforge.net/project/nsis/NSIS 2/2.46/nsis-2.46-setup.exe" -FileName nsissetup.exe
+  - nsissetup /S /D=%NSIS_ROOT%
+  - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
 
 build_script:
-  - qmake tiled.pro
-  - nmake
+  - set VERSION=%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%
+  - FOR /F "tokens=*" %%i in ('%GIT% describe') do SET COMMITNOW=%%i
+  - echo Building Tiled daily %VERSION%... (from %COMMITNOW%)
+  - qmake tiled.pro "CONFIG+=release" "QMAKE_CXXFLAGS+=-DBUILD_INFO_VERSION=%COMMITNOW%"
+  - mingw32-make
